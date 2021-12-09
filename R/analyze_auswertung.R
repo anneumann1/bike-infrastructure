@@ -1,16 +1,17 @@
+###Point Data###
+
 library("tidyverse")
 library("xml2")
 
-filename <- file.choose("Auswertung.rds")
-auswertung <- readRDS(filename)
+Auswertung <- readRDS("Auswertung.rds")
 
-auswertung$xml <- auswertung$kml %>% 
+Auswertung$xml <- Auswertung$kml %>% 
   map(function(x) read_xml(x, as_html = TRUE, options = "NOBLANKS"))
 
-temporary <- auswertung$xml %>% 
+temporary <- Auswertung$xml %>% 
   map(function(x) xml_find_all(x, "//coordinates"))
 
-auswertung$coordinates <- temporary %>% 
+Auswertung$coordinates <- temporary %>% 
   map(function(x) xml_text(x, trim = FALSE)) 
       
 
