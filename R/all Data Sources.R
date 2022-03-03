@@ -31,18 +31,3 @@ jj<-jj %>%
   select(-rn)
 
 jj<-st_as_sf(x = jj,coords = c("coordinates1","coordinates2"),crs = 4326)
-
-
-##Berlin API##
-
-url <- "https://api.viz.berlin.de/daten/baustellen_sperrungen.json"
-downloader::download(url = url, destfile = "baustellen_sperrungen.json")
-baustelle <- read_sf("baustellen_sperrungen.json")
-
-baustelle<-baustelle %>% st_transform(4326) 
-
-baustelle%>%
-  #  filter(!content=="wieder frei")%>%
-  #  filter(!str_detect(content, "geräumt")) %>%
-  filter(!str_detect(street, "A")) %>%
-  ggplot()+geom_sf()
