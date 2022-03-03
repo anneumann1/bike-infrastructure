@@ -31,3 +31,14 @@ jj<-jj %>%
   select(-rn)
 
 jj<-st_as_sf(x = jj,coords = c("coordinates1","coordinates2"),crs = 4326)
+
+##Infravelo API##
+
+library(xml2)
+json_file <- "https://www.infravelo.de/api/v1/projects/"
+Auswertung <- fromJSON(paste(readLines(json_file), collapse=""))
+
+Auswertung<-as.vector(Auswertung)
+
+Auswertung<-rbind(Auswertung)%>%as.data.frame()%>%unnest(results)%>%unnest_wider(results)
+
