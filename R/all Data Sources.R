@@ -50,7 +50,7 @@ library(stringr)
 
 ##load file unnest columns##
 json_file <- "https://www.infravelo.de/api/v1/projects/"
-Auswertung <- fromJSON(paste(readLines(json_file), collapse="", na.strings=c("","NA")))#%>%na_if("")
+Auswertung <- fromJSON(paste(readLines(json_file), collapse="", na.strings=c("","NA")))
 Auswertung<-as.data.table(Auswertung)%>%unnest_wider(results)
 Auswertung<-Auswertung%>%
   unnest(types)%>%
