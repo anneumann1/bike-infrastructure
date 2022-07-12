@@ -2,6 +2,7 @@
 
 library("tidyverse")
 library("xml2")
+library("stringr")
 
 Auswertung <- readRDS("Auswertung.rds")
 
@@ -18,7 +19,7 @@ Auswertung$coordinates <- temporary %>%
 Auswertung<-Auswertung%>%unnest(coordinates)
 Auswertung$coords<- trimws(Auswertung$coordinates, which = c("both"))
 
-library(stringr)
+
 
 Auswertung$point <- word(Auswertung$coords, 1:2)
 Auswertung<-Auswertung %>% separate(point, into = c("lon", "lat"), sep = ",")
