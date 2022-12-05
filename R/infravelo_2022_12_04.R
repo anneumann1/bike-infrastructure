@@ -584,7 +584,7 @@ gesamt_buffer<-st_transform(gesamt, CRS("+init=epsg:3068 +datum=WGS84 +units=m")
 gesamt_buffer<-st_buffer(gesamt_buffer,12)  
 
 ####load fbinter data###
-fbinter_2020<-read_sf("D:\\Eigene Dateien\\Favorites\\Downloads\\fbinter_radverkehrsanlagen.geojson")
+fbinter_2020<-here("fbinter_radverkehrsanlagen.geojson")
 
 fbinter_2020<-st_transform(fbinter_2020, CRS("+init=epsg:3068 +datum=WGS84 +units=m"))
 
